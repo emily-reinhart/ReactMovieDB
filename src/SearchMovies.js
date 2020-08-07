@@ -25,7 +25,7 @@ export default function SearchMovies () {
 
 		//search/movie; search/person; search/tv; search/multi
 		const url = `https://api.themoviedb.org/3/search/multi?api_key=${process.env
-			.REACT_APP_API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`;
+			.REACT_APP_API_KEY}&language=en-US&page=1&query=${query}&include_adult=false`;
 
 		try {
 			const res = await fetch(url);
@@ -54,7 +54,7 @@ export default function SearchMovies () {
 					className="input"
 					type="text"
 					name="query"
-					placeholder="Search for a movie, show, or person..."
+					placeholder="Search for a movie or tv show..."
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
 				/>
@@ -63,7 +63,9 @@ export default function SearchMovies () {
 				</button>
 			</form>
 			<div className="card-list">
-				{movies.filter((movie) => movie.poster_path).map((movie) => <MovieCard movie={movie} key={movie.id} />)}
+				{movies
+					.filter((movie) => movie.poster_path || movie.profile_path)
+					.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
 			</div>
 		</Fragment>
 	);

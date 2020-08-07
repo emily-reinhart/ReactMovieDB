@@ -168,6 +168,9 @@ small {
 	margin: 0 auto;
 	display: block;
 }
+.actorFilms {
+	margin-left: 2rem;
+}
 /* END MOVIE RESULT CARDS */
 
 /* ###################################################### */

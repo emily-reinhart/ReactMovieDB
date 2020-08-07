@@ -48,8 +48,8 @@ export default function Banner () {
 							src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 							alt=""
 						/>
-						<div class="overlay">
-							<div class="text">
+						<div className="overlay">
+							<div className="text">
 								<p className="movie__title">{movie.title}</p>
 								<p className="movie__year">{movie.release_date.split('-')[0]}</p>
 								<p className="movie__desc">{movie.overview.slice(0, 100)}...</p>
