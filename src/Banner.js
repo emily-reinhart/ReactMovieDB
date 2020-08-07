@@ -9,7 +9,7 @@ export default function Banner () {
 
 	useEffect(() => {
 		const getTrending = async () => {
-			const url = `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env
+			const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env
 				.REACT_APP_API_KEY}&include_adult=false`;
 
 			try {
@@ -50,15 +50,9 @@ export default function Banner () {
 						/>
 						<div class="overlay">
 							<div class="text">
-								<p>{movie.title || movie.name}</p>
-								<p>
-									{movie.release_date ? (
-										movie.release_date.split('-')[0]
-									) : (
-										movie.first_air_date.split('-')[0]
-									)}
-								</p>
-								<p>{movie.overview.slice(0, 100)}...</p>
+								<p className="movie__title">{movie.title}</p>
+								<p className="movie__year">{movie.release_date.split('-')[0]}</p>
+								<p className="movie__desc">{movie.overview.slice(0, 100)}...</p>
 							</div>
 						</div>
 					</div>

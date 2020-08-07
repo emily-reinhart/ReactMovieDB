@@ -5,6 +5,20 @@ import MovieCard from './MovieCard';
 export default function SearchMovies () {
 	const [ query, setQuery ] = useState('');
 	const [ movies, setMovies ] = useState([]);
+	const [ showScroll, setShowScroll ] = useState(false);
+
+	const checkScrollTop = () => {
+		if (!showScroll && window.pageYOffset > 400) {
+			setShowScroll(true);
+		}
+		else if (showScroll && window.pageYOffset <= 400) {
+			setShowScroll(false);
+		}
+	};
+	window.addEventListener('scroll', checkScrollTop);
+	const scrollTop = () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	};
 
 	const searchMovies = async (e) => {
 		e.preventDefault();
@@ -24,6 +38,14 @@ export default function SearchMovies () {
 
 	return (
 		<Fragment>
+			<i
+				className="material-icons scrollTop"
+				onClick={scrollTop}
+				style={{ display: showScroll ? 'flex' : 'none' }}
+			>
+				keyboard_arrow_up
+			</i>
+
 			<form className="form" onSubmit={searchMovies}>
 				<label className="label" htmlFor="query">
 					Search:
