@@ -1,68 +1,71 @@
 import React from 'react';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 export default function Banner () {
 	const [ trending, setTrending ] = useState([]);
 
-	const getTrending = async () => {
-		const url = `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env
-			.REACT_APP_API_KEY}&include_adult=false`;
+	useEffect(() => {
+		const getTrending = async () => {
+			const url = `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env
+				.REACT_APP_API_KEY}&include_adult=false`;
 
-		try {
-			const res = await fetch(url);
-			const data = await res.json();
-			setTrending(data.results);
-		} catch (err) {
-			console.error(err);
+			try {
+				const res = await fetch(url);
+				const data = await res.json();
+				setTrending(data.results);
+			} catch (err) {
+				console.error(err);
+			}
+		};
+		getTrending();
+	}, []);
+
+	const responsive = {
+		desktop: {
+			breakpoint: { max: 3000, min: 1024 },
+			items: 5
+		},
+		tablet: {
+			breakpoint: { max: 1024, min: 464 },
+			items: 3
+		},
+		mobile: {
+			breakpoint: { max: 464, min: 0 },
+			items: 2
 		}
-		// const trendingMovies = trending.filter((movie) => movie.poster_path).slice(0, 6);
-		// console.log(trendingMovies);
 	};
-
-	getTrending();
 
 	return (
 		<div className="banner" style={{ marginTop: '45.33px' }}>
-			{trending[0] ? (
-				<div className="slider">
-					<img
-						className="slider__image"
-						id="slider1"
-						src={`https://image.tmdb.org/t/p/w500${trending[0].poster_path}`}
-						alt=""
-					/>
-					<img
-						className="slider__image"
-						id="slider2"
-						src={`https://image.tmdb.org/t/p/w500${trending[1].poster_path}`}
-						alt=""
-					/>
-					<img
-						className="slider__image"
-						id="slider3"
-						src={`https://image.tmdb.org/t/p/w500${trending[2].poster_path}`}
-						alt=""
-					/>
-					<img
-						className="slider__image"
-						id="slider4"
-						src={`https://image.tmdb.org/t/p/w500${trending[3].poster_path}`}
-						alt=""
-					/>
-					<img
-						className="slider__image"
-						id="slider5"
-						src={`https://image.tmdb.org/t/p/w500${trending[4].poster_path}`}
-						alt=""
-					/>
-				</div>
-			) : null}
+			<Carousel responsive={responsive} infinite={true} swipeable={true}>
+				{trending.filter((movie) => movie.poster_path).splice(0, 15).map((movie) => (
+					<div className="slide">
+						<img
+							style={{ width: '100%', transition: '.5s ease', backfaceVisibility: 'hidden' }}
+							src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+							alt=""
+						/>
+						<div class="overlay">
+							<div class="text">
+								<p>{movie.title || movie.name}</p>
+								<p>
+									{movie.release_date ? (
+										movie.release_date.split('-')[0]
+									) : (
+										movie.first_air_date.split('-')[0]
+									)}
+								</p>
+								<p>{movie.overview.slice(0, 100)}...</p>
+							</div>
+						</div>
+					</div>
+				))}
+			</Carousel>
+
 			<h1 className="title">React Movie DB</h1>
-			{/* <div className="fadein">
-				<img id="f3" src="http://i.imgur.com/R7A9JXc.png" />
-				<img id="f2" src="http://i.imgur.com/D5yaJeW.png" />
-				<img id="f1" src="http://i.imgur.com/EUqZ1Er.png" />
-			</div> */}
 		</div>
 	);
 }

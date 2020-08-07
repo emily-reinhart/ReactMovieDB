@@ -168,76 +168,37 @@ small {
 }
 /* END MOVIE RESULT CARDS */
 
-/* CAROUSEL SLIDER */
-.slider {
-	width: 100%;
-	/* height: 289px; */
-}
-/* .slider img {
+/* ###################################################### */
+/* SLIDER */
+.overlay {
 	position: absolute;
-	left: -65px;
 	top: 0;
-} */
-
-.slider__image {
-	/* height: 289px; */
-	width: 20%;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	opacity: 0;
+	cursor: pointer;
+	transition: 1s ease;
+	background-color: rgba(0, 0, 0, 0.8);
+	/* border: 3px solid black; */
 }
 
-/* .fadein img {
+.text {
 	position: absolute;
-
-	-webkit-animation-name: fade;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-duration: 6s;
-	animation-name: fade;
-	animation-iteration-count: infinite;
-	animation-duration: 6s;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	font-size: 1.5rem;
+	padding: 5px 10px;
+	color: white;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+}
+.text p {
+	margin: 8px 0px;
 }
 
-@-webkit-keyframes fade {
-	0% {
-		opacity: 0;
-	}
-	20% {
-		opacity: 1;
-	}
-	33% {
-		opacity: 1;
-	}
-	53% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 0;
-	}
+.slide:hover .overlay {
+	opacity: 0.8;
 }
-@keyframes fade {
-	0% {
-		opacity: 0;
-	}
-	20% {
-		opacity: 1;
-	}
-	33% {
-		opacity: 1;
-	}
-	53% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 0;
-	}
-}
-
-#f1 {
-	background-color: lightblue;
-}
-#f2 {
-	-webkit-animation-delay: -4s;
-	background-color: yellow;
-}
-#f3 {
-	-webkit-animation-delay: -2s;
-	background-color: lightgreen;
-} */
