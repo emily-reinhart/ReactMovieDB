@@ -41,6 +41,13 @@ li a {
 	font-size: 2rem;
 	padding: 10px;
 	text-decoration: none;
+	transition: 0.5s ease;
+}
+li a:hover {
+	color: palevioletred;
+}
+.navLogoParent:hover {
+	background: rgba(216, 112, 147, 0.6);
 }
 .navLogo {
 	height: 2rem;
@@ -162,6 +169,14 @@ small {
 	margin-bottom: 0.5rem;
 	font-size: 3.2rem;
 }
+.card__title a {
+	text-decoration: none;
+	color: #333;
+	transition: 0.5s ease;
+}
+.card__title a:hover {
+	color: palevioletred;
+}
 
 .card__image {
 	width: 100%;
@@ -183,10 +198,8 @@ small {
 	bottom: 0;
 	width: 100%;
 	opacity: 0;
-	cursor: pointer;
-	transition: 1s ease;
+	transition: 0.5s ease;
 	background-color: rgba(0, 0, 0, 0.8);
-	/* border: 3px solid black; */
 }
 
 .text {
@@ -202,6 +215,15 @@ small {
 }
 .text p {
 	margin: 8px 0px;
+}
+.movie__title a {
+	text-align: left;
+	font-weight: 600;
+	padding: 0;
+	transition: 1s ease;
+}
+.movie__title a:hover {
+	color: palevioletred;
 }
 
 .slide:hover .overlay {

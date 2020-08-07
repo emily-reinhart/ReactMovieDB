@@ -9,7 +9,11 @@ export default function MovieCard ({ movie }) {
 				className="card__image"
 			/>
 			<div className="card__content">
-				<h2 className="card__title">{movie.title || movie.name}</h2>
+				<h2 className="card__title">
+					<a href={`http://www.themoviedb.org/${movie.media_type}/${movie.id}`}>
+						{movie.title || movie.name}
+					</a>
+				</h2>
 				<p>
 					<small style={{ fontWeight: '600', fontSize: '1.5rem' }}>{movie.media_type.toUpperCase()} </small>
 				</p>

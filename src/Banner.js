@@ -50,7 +50,11 @@ export default function Banner () {
 						/>
 						<div className="overlay">
 							<div className="text">
-								<p className="movie__title">{movie.title}</p>
+								<p className="movie__title">
+									<a href={`http://www.themoviedb.org/${movie.media_type}/${movie.id}`}>
+										{movie.title}
+									</a>
+								</p>
 								<p className="movie__year">{movie.release_date.split('-')[0]}</p>
 								<p className="movie__desc">{movie.overview.slice(0, 100)}...</p>
 							</div>
